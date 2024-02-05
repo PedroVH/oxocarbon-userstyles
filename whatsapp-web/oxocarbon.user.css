@@ -1,0 +1,669 @@
+/* ==UserStyle==
+@name WhatsApp Web Oxocarbon
+@namespace github.com/pedrovh/oxocarbon-userstyles/whatsapp-web
+@homepageURL https://github.com/pedrovh/oxocarbon-userstyles/whatsapp-web
+@version 1.0
+@updateURL https://github.com/pedrovh/oxocarbon-userstyles/whatsapp-web/oxocarbon.user.css
+@description Soothing pastel theme for WhatsApp Web
+@author PedroVH
+@license MIT
+
+@preprocessor less
+@var select flavor "Flavor" ["base16:Base16*"]
+@var select accentColor "Accent" ["pink:Pink*", "raspberry:Raspberry", "violet:Violet"]
+@var checkbox lighterMessages "Lighter incoming messages" 0
+==/UserStyle== */
+@-moz-document domain("web.whatsapp.com") {
+  /* prettier-ignore */
+  @oxocarbon: {
+      @base16: {
+          @pink: #ff7eb6;
+          @raspberry: #ee5396;
+          @blue: #33b1ff;
+          @skyBlue: #78a9ff;
+          @lightBlue: #82cfff;
+          @tiffanyBlue: #08bdba;
+          @turquoise: #3ddbd9;
+          @green: #42be65;
+          @violet: #be95ff;
+          @text: #dde1e6;
+          @subtext1: #ffffff;
+          @subtext0: #ffffff;
+          @overlay2: #f2f4f8;
+          @overlay1: #f2f4f8;
+          @overlay0: #dde1e6;
+          @surface2: #dde1e6;
+          @surface1: #525252;
+          @surface0: #525252;
+          @base: #161616;
+          @mantle: #262626;
+          @crust: #393939;
+      }
+  }
+
+  body {
+    #oxocarbon(@flavor, @accentColor);
+  }
+
+  body.dark {
+    #oxocarbon(@flavor, @accentColor);
+  }
+
+  @color: red;
+  #rgbify(@color) {
+    @rgb-raw: red(@color) green(@color) blue(@color);
+  }
+
+  #oxocarbon(@lookup, @accent) {
+    @pink: @oxocarbon[@@lookup][@pink];
+    @raspberry: @oxocarbon[@@lookup][@raspberry];
+    @green: @oxocarbon[@@lookup][@green];
+    @turquoise: @oxocarbon[@@lookup][@turquoise];
+    @blue: @oxocarbon[@@lookup][@blue];
+    @lightBlue: @oxocarbon[@@lookup][@lightBlue];
+    @tiffanyBlue: @oxocarbon[@@lookup][@tiffanyBlue];
+    @violet: @oxocarbon[@@lookup][@violet];
+    @text: @oxocarbon[@@lookup][@text];
+    @subtext1: @oxocarbon[@@lookup][@subtext1];
+    @subtext0: @oxocarbon[@@lookup][@subtext0];
+    @overlay2: @oxocarbon[@@lookup][@overlay2];
+    @overlay1: @oxocarbon[@@lookup][@overlay1];
+    @overlay0: @oxocarbon[@@lookup][@overlay0];
+    @surface2: @oxocarbon[@@lookup][@surface2];
+    @surface1: @oxocarbon[@@lookup][@surface1];
+    @surface0: @oxocarbon[@@lookup][@surface0];
+    @base: @oxocarbon[@@lookup][@base];
+    @mantle: @oxocarbon[@@lookup][@mantle];
+    @crust: @oxocarbon[@@lookup][@crust];
+    @accent-color: @oxocarbon[@@lookup][@@accent];
+
+    .landing-wrapper-before {
+      background-color: @accent-color !important;
+    }
+
+    /* STATUS PAGE */
+    --status-background: @base !important;
+    .bfsx6evv {
+      background-color: @mantle !important;
+    }
+
+    --modal-backdrop-solid: @base !important;
+
+    /* join group pop up */
+    --modal-background: @base !important;
+
+    /* startup progress */
+    --progress-primary: @accent-color !important;
+    --progress-background: @surface1 !important;
+    --startup-background: @base !important;
+    --startup-background-rgb: #rgbify(@base) [];
+    /* home page, no chat selected */
+    --intro-background: @base !important;
+    --intro-border: @accent-color !important;
+    /* general background */
+    --app-background: @base !important;
+
+    /* CHAT LIST */
+    /* chat list background */
+    --background-default: @base !important;
+    /* chat list header */
+    --panel-header-background: @mantle !important;
+    /* icons */
+    --panel-header-icon: @text !important;
+    /* other warnings (notifications) */
+    --butterbar-default-background: @mantle !important;
+    --butterbar-notification-icon: @blue !important;
+    /* loading messages warning */
+    --butterbar-green-nux-background: @mantle !important;
+    /* update available warning */
+    --butterbar-update-background: @mantle !important;
+    --butterbar-update-icon: @accent-color !important;
+    /* chat list search bar */
+    --search-container-background: @base !important;
+    --search-input-container-background: @base !important;
+    --search-input-background: @crust !important;
+    --search-input-container-background-active: @mantle !important;
+    --icon-search-back: @accent-color !important;
+    /* archive icon */
+    --icon-bright-highlight: @accent-color !important;
+    /* archived unread marker */
+    --unread-marker-background: @accent-color !important;
+    --unread-timestamp: @accent-color !important;
+    /* archived chats header */
+    --archived-chat-persistent-header-background: @crust !important;
+    /* unread voice message */
+    --ptt-green: @green !important;
+    /* read voice message */
+    --ptt-blue: @blue !important;
+    /* pinned chat icon */
+    --icon-pinned: @accent-color !important;
+    /* last message in selected chat */
+    --secondary-stronger: @subtext1 !important;
+    /* background for active and hover chats in chat list */
+    --background-default-active: @mantle !important;
+    --background-default-hover: @crust !important;
+    /* unread chats filter */
+    --icon-high-emphasis: @green !important;
+    .p7idzaix {
+      color: @crust !important;
+    }
+    /* voice message playing */
+    --ptt-ooc-background: @mantle !important;
+
+    /* CONVERSATION */
+    /* chat background */
+    --conversation-panel-background: @base !important;
+    /* MESSAGES */
+    /* background for incoming and outgoing messages */
+    & when (@lighterMessages=1) {
+      --incoming-background: @surface1 !important;
+      --incoming-background-deeper: @surface2 !important;
+      /* arrow icon in messages */
+      --incoming-background-rgb: #rgbify(@surface1) [];
+    }
+    & when (@lighterMessages=0) {
+      --incoming-background: @mantle !important;
+      --incoming-background-deeper: @surface0 !important;
+      /* arrow icon in messages */
+      --incoming-background-rgb: #rgbify(@base) [];
+    }
+    --outgoing-background: @crust !important;
+    /* read double tick */
+    --icon-ack: @blue !important;
+    /* received double tick */
+    --bubble-meta-icon: @subtext0 !important;
+    /* message timestamp */
+    --bubble-meta: @text !important;
+    --message-primary: @text !important;
+    /* POLL */
+    /* creation */
+    --poll-modal-background-color: @base !important;
+    --poll-modal-footer-background-color: @surface0 !important;
+    /* votes */
+    --poll-bar-fill-receiver: @green !important;
+    --poll-bar-fill-sender: @green !important;
+    --checkbox-mark: @crust !important;
+
+    /* audio duration */
+    --audio-progress-metadata: @subtext0 !important;
+    /* system messages (unread or day messages in chats) */
+    --system-message-text: @text !important;
+    --system-message-background: @crust !important;
+    /* unread system message background */
+    --unread-background: @crust !important;
+    --unread-bar-background: @surface1 !important;
+    /* meta data for documents */
+    --document-meta: @subtext1 !important;
+    /* mentions, links and link previews */
+    --mention-at-symbol: @tiffanyBlue !important;
+    --link: @tiffanyBlue !important;
+    --link-preview: @text !important;
+    --link-preview-lighter: @subtext1 !important;
+    --link-preview-light: @subtext0 !important;
+    --outgoing-background-rgb: #rgbify(@surface0) [];
+    /* QUOTED MESSAGES */
+    /* quoted messages */
+    --quoted-message-text: @text !important;
+    /* background for quoted incoming and outgoing messages */
+    --outgoing-background-deeper: @surface1 !important;
+
+    /* SEARCH IN CHAT HIGHLIGHT */
+    --highlight: @turquoise !important;
+
+    /* quote colors */
+    .bg-color-1 {
+      background-color: @green !important;
+    }
+    .color-1 {
+      color: @green !important;
+    }
+    .bg-color-2 {
+      background-color: @blue !important;
+    }
+    .color-2 {
+      color: @blue !important;
+    }
+    .bg-color-3 {
+      background-color: @pink !important;
+    }
+    .color-3 {
+      color: @pink !important;
+    }
+    .bg-color-4 {
+      background-color: @tiffanyBlue !important;
+    }
+    .color-4 {
+      color: @tiffanyBlue !important;
+    }
+    .bg-color-5 {
+      background-color: @raspberry !important;
+    }
+    .color-5 {
+      color: @pink !important;
+    }
+    .bg-color-6 {
+      background-color: @blue !important;
+    }
+    .color-6 {
+      color: @blue !important;
+    }
+    .bg-color-7 {
+      background-color: @lightBlue !important;
+    }
+    .color-7 {
+      color: @lightBlue !important;
+    }
+    .bg-color-8 {
+      background-color: @turquoise !important;
+    }
+    .color-8 {
+      color: @turquoise !important;
+    }
+    .bg-color-9 {
+      background-color: @violet !important;
+    }
+    .color-9 {
+      color: @violet !important;
+    }
+    .bg-color-10 {
+      background-color: @raspberry!important;
+    }
+    .color-10 {
+      color: @raspberry!important;
+    }
+    .bg-color-11 {
+      background-color: @raspberry !important;
+    }
+    .color-11 {
+      color: @raspberry !important;
+    }
+    .bg-color-12 {
+      background-color: @raspberry !important;
+    }
+    .color-12 {
+      color: @raspberry !important;
+    }
+    .bg-color-13 {
+      background-color: @pink !important;
+    }
+    .color-13 {
+      color: @pink !important;
+    }
+    .bg-color-14 {
+      background-color: @pink !important;
+    }
+    .color-14 {
+      color: @pink !important;
+    }
+    .bg-color-15 {
+      background-color: @raspberry !important;
+    }
+    .color-15 {
+      color: @raspberry !important;
+    }
+    .bg-color-16 {
+      background-color: @turquoise !important;
+    }
+    .color-16 {
+      color: @turquoise !important;
+    }
+    /* general text */
+    --primary: @text !important;
+    --primary-strong: @text !important;
+    --primary-stronger: @text !important;
+    --primary-strongest: @text !important;
+    --secondary: @subtext0 !important;
+    --secondary-strongest-rgb: #rgbify(@text) [];
+    --inline-code-text: @blue !important;
+    /* chat list typing message */
+    --typing: @green !important;
+    /* background for video player and image viewer */
+    --media-viewer-background: @mantle !important;
+    /* not loaded media */
+    --media-gallery-thumb-background: @crust !important;
+
+    /* Group info/Contact info */
+    --photopicker-overlay-background: fadeout(@mantle, 0.8) !important;
+    --photopicker-overlay-background-rgb: #rgbify(@base) [];
+    --media-viewer-background-rgb: #rgbify(@base) [];
+    --drawer-background-deep: @crust !important;
+    /* group info read more */
+    --input-button-more: @tiffanyBlue !important;
+    /* Group info thumbnails border */
+    --chat-info-drawer-thumb-background: @surface2 !important;
+    /* Group admin badge background */
+    --chat-marker-background: @mantle !important;
+    --chat-marker-border: @mantle !important;
+    /* Group admin badge foreground */
+    --chat-marker: @subtext0 !important;
+    /* Media gallery */
+    --drawer-gallery-background: @crust !important;
+    /* mute toggle */
+    --switch-button-checked-color: @accent-color !important;
+    --switch-track-checked-color: @surface2 !important;
+    --switch-track-color: @surface2 !important;
+    --switch-button-color: @overlay1 !important;
+
+    /* danger, block, exit and report buttons */
+    --danger: @raspberry!important;
+
+    /* group added by someone not in contacts */
+    --button-plain-background: @surface0 !important;
+    --button-plain-background-hover: @surface1 !important;
+
+    /* EMOJI AND STICKERS */
+    --panel-input-background: @surface0 !important;
+    --sticker-button-background: @surface1 !important;
+    --active-tab-marker: @accent-color !important;
+
+    /* REACTIONS */
+    --reactions-panel-background-color: @surface0 !important;
+    --reactions-tray-background: @surface0 !important;
+    --reactions-details-background: @surface0 !important;
+    --svg-gray-button: @surface0 !important;
+
+    /* Forward message popup */
+    --panel-background-colorred-deeper: @crust !important;
+    --modal-backdrop: fadeout(@mantle, 0.8) !important;
+
+    /* Forward media caption */
+    --forward-caption-preview-background: @mantle !important;
+    --forward-caption-preview-content: @crust !important;
+
+    /* MEDIA EDITOR */
+    /* background for media editor */
+    --panel-background-deeper: @mantle !important;
+    /* message box for media editor */
+    --media-editor-image-caption-input-background: @surface0 !important;
+    /* selected picture in media editor */
+    --media-editor-thumb-border-active: @accent-color !important;
+    /* send button in media editor */
+    --button-round-background: @accent-color !important;
+
+    /* COMPOSE BAR */
+    /* type a message bar and background */
+    --compose-input-background: @surface0 !important;
+    --compose-input-border: @surface1 !important;
+    --compose-panel-background: @mantle !important;
+    --rich-text-panel-background: @mantle !important;
+    /* select messages fixes */
+    --panel-background: @mantle !important;
+    --panel-background-rgb: #rgbify(@mantle) [];
+    --checkbox-background: @accent-color !important;
+    /* quoted message in compose */
+    --popup-panel-background: @surface0 !important;
+    /* use Surface 0 for contrast, other colors don't pass AAA */
+    /* mention list item background */
+    --compose-panel-background-hover: @surface1 !important;
+    /* compose bar icons */
+    --icon: @accent-color !important;
+    /* ATTACH ICONS */
+    /* poll icon */
+    div._1OT67
+      > div
+      > span
+      > div
+      > div
+      > ul
+      > li:nth-child(6)
+      > button
+      > span
+      > svg
+      > circle {
+      fill: @green !important;
+    }
+    /* image icon */
+    div._1OT67
+      > div
+      > span
+      > div
+      > div
+      > ul
+      > li:nth-child(1)
+      > button
+      > span
+      > svg
+      > g:nth-child(1)
+      > g
+      > path:nth-child(2) {
+      fill: @pink !important;
+    }
+    div._1OT67
+      > div
+      > span
+      > div
+      > div
+      > ul
+      > li:nth-child(1)
+      > button
+      > span
+      > svg
+      > g:nth-child(1)
+      > g
+      > path:nth-child(1) {
+      fill: @pink !important;
+      filter: brightness(85%) !important;
+    }
+    div._1OT67
+      > div
+      > span
+      > div
+      > div
+      > ul
+      > li:nth-child(1)
+      > button
+      > span
+      > svg
+      > g:nth-child(1)
+      > g
+      > rect {
+      fill: @pink !important;
+      filter: brightness(70%) !important;
+    }
+    /* sticker icon */
+    div._1OT67
+      > div
+      > span
+      > div
+      > div
+      > ul
+      > li:nth-child(2)
+      > button
+      > span
+      > svg
+      > g
+      > circle {
+      fill: @blue !important;
+      filter: brightness(85%) !important;
+    }
+    div._1OT67
+      > div
+      > span
+      > div
+      > div
+      > ul
+      > li:nth-child(2)
+      > button
+      > span
+      > svg
+      > g
+      > path:nth-child(2) {
+      fill: @blue !important;
+    }
+    /* camera icon */
+    div._1OT67
+      > div
+      > span
+      > div
+      > div
+      > ul
+      > li:nth-child(3)
+      > button
+      > span
+      > svg
+      > g:nth-child(1)
+      > g
+      > path:nth-child(1) {
+      fill: @raspberry!important;
+      filter: brightness(85%) !important;
+    }
+    div._1OT67
+      > div
+      > span
+      > div
+      > div
+      > ul
+      > li:nth-child(3)
+      > button
+      > span
+      > svg
+      > g:nth-child(1)
+      > g
+      > path:nth-child(2) {
+      fill: @raspberry!important;
+    }
+    div._1OT67
+      > div
+      > span
+      > div
+      > div
+      > ul
+      > li:nth-child(3)
+      > button
+      > span
+      > svg
+      > g:nth-child(1)
+      > g
+      > rect {
+      fill: @raspberry!important;
+      filter: brightness(85%) !important;
+    }
+    /* document icon */
+    div._1OT67
+      > div
+      > span
+      > div
+      > div
+      > ul
+      > li:nth-child(4)
+      > button
+      > span
+      > svg
+      > g:nth-child(1)
+      > g
+      > path:nth-child(1) {
+      fill: @raspberry !important;
+      filter: brightness(85%) !important;
+    }
+    div._1OT67
+      > div
+      > span
+      > div
+      > div
+      > ul
+      > li:nth-child(4)
+      > button
+      > span
+      > svg
+      > g:nth-child(1)
+      > g
+      > path:nth-child(2) {
+      fill: @raspberry !important;
+    }
+    /* contact icon */
+    div._1OT67
+      > div
+      > span
+      > div
+      > div
+      > ul
+      > li:nth-child(5)
+      > button
+      > span
+      > svg
+      > g:nth-child(1)
+      > g
+      > g
+      > path:nth-child(1) {
+      fill: @blue !important;
+      filter: brightness(85%) !important;
+    }
+    div._1OT67
+      > div
+      > span
+      > div
+      > div
+      > ul
+      > li:nth-child(5)
+      > button
+      > span
+      > svg
+      > g:nth-child(1)
+      > g
+      > g
+      > path:nth-child(2) {
+      fill: @blue !important;
+    }
+    /* VOICE MESSAGE SENDING */
+    --ptt-draft-button-send: @accent-color !important;
+    --ptt-draft-waveform-background: @base !important;
+    --ptt-draft-button-stop: @raspberry !important;
+    --ptt-draft-button-stop-hover: @raspberry !important;
+
+    /* GENERAL OPTIONS */
+    /* dropdown menus */
+    --dropdown-background: @surface0 !important;
+    --dropdown-background-hover: @surface1 !important;
+
+    /* OTHER SECTIONS */
+    /* profile background */
+    --drawer-background: @base !important;
+    /* communities, new chat, other panes */
+    --panel-background-colored: @mantle !important;
+    --drawer-section-background: @base !important;
+    /* new chat icons */
+    --round-icon-background: @green !important;
+    --inverse: @text !important;
+    /* title and icon for drawers */
+    --drawer-header-title: @text !important;
+    /* buttons such as create community */
+    --button-primary-background: @accent-color !important;
+    --button-primary-background-hover: fadeout(@accent-color, 0.8) !important;
+    /* keyboard shortcuts background */
+    --panel-background-lighter: @mantle !important;
+    /* active input in modals and drawers */
+    --input-border-active: @accent-color !important;
+
+    /* Start page drawing */
+    #app
+      > div
+      > div
+      > div._2Ts6i._2xAQV
+      > div
+      > div
+      > div.WM0_u
+      > span
+      > svg
+      > path:nth-child(1) {
+      fill: @surface2 !important;
+    }
+
+    /* Status unread dot */
+    #df9d3429-f0ef-48b5-b5eb-f9d27b2deba6 > path:nth-child(2) {
+      fill: @accent-color !important;
+    }
+
+    #side
+      > div._3gYev
+      > div
+      > div
+      > button
+      > div._3xdht._1ZD3q
+      > span
+      > svg
+      > path {
+      fill: @accent-color !important;
+    }
+  }
+}
+// vim:ft=less
