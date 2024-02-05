@@ -1,0 +1,642 @@
+/* ==UserStyle==
+@name         GitHub Oxocarbon
+@namespace    github.com/pedrovh/oxocarbon-userstyles/github
+@homepageURL  https://github.com/pedrovh/oxocarbon-userstyles/github
+@version      1.0
+@updateURL    https://github.com/pedrovh/oxocarbon-userstyles/styles/youtube/oxocarbon.user.css
+@description  Port of IBM's carbon color palette
+@author       PedroVH
+@license      MIT
+
+@preprocessor less
+@var select flavor "Flavor" ["base16:Base16*"]
+@var select accentColor "Accent" ["pink:Pink*", "raspberry:Raspberry", "violet:Violet"]
+
+@var checkbox search-beta "[BETA]: Enable Search" 1
+@var checkbox repo-beta "[BETA]: Enable New Repository Code View" 1
+==/UserStyle== */
+
+@oxocarbon: {
+    @base16: {
+        @pink: #ff7eb6;
+        @raspberry: #ee5396;
+        @blue: #33b1ff;
+        @skyBlue: #78a9ff;
+        @lightBlue: #82cfff;
+        @tiffanyBlue: #08bdba;
+        @turquoise: #3ddbd9;
+        @green: #42be65;
+        @violet: #be95ff;
+        @text: #dde1e6;
+        @subtext1: #ffffff;
+        @subtext0: #ffffff;
+        @overlay2: #f2f4f8;
+        @overlay1: #f2f4f8;
+        @overlay0: #dde1e6;
+        @surface2: #dde1e6;
+        @surface1: #525252;
+        @surface0: #525252;
+        @base: #161616;
+        @mantle: #262626;
+        @crust: #393939;
+    }
+}
+@-moz-document regexp("https:\/\/(gist\.)*github\.com(?!((\/.+?\/.+?\/commit\/[A-Fa-f0-9]+\.(patch|diff)$)|\/home$|\/features($|\/.*)|\/marketplace($|\?.*|\/.*)|\/organizations\/plan)).*$") {
+  [data-color-mode="light"],
+  [data-color-mode="auto"] > .theme-light {
+    #oxocarbon(@flavor, @accentColor);
+  }
+  @media (prefers-color-scheme: light) {
+    [data-color-mode="auto"] {
+      #oxocarbon(@flavor, @accentColor);
+    }
+  }
+  [data-color-mode="dark"],
+  [data-color-mode="auto"] > .theme-dark {
+    #oxocarbon(@flavor, @accentColor);
+  }
+  @media (prefers-color-scheme: dark) {
+    [data-color-mode="auto"] {
+      #oxocarbon(@flavor, @accentColor);
+    }
+  }
+
+  html:not([data-light-theme="light"]) body:not(.logged-out)::after,
+  html:not([data-dark-theme="dark"]) body:not(.logged-out)::after {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 0.5rem;
+    max-width: 40ch;
+    background-color: var(--color-danger-fg);
+    color: var(--color-header-bg);
+    content: "Unsupported GitHub theme detected! Please switch to the default light/dark theme via the GitHub Appearance settings to get the best experience for the oxocarbon GitHub userstyle.";
+    z-index: 9999;
+  }
+
+  #coloredButton(@item, @color, @flat) {
+    & when (@flat) {
+      --color-btn-@{item}-text: @color;
+      --color-btn-@{item}-bg: @base;
+      --color-btn-@{item}-icon: @color;
+
+      --color-btn-@{item}-hover-text: @base;
+      --color-btn-@{item}-hover-bg: @color;
+      --color-btn-@{item}-hover-border: @color;
+
+      --color-btn-@{item}-selected-text: @base;
+      --color-btn-@{item}-selected-bg: @color;
+      --color-btn-@{item}-selected-border: @color;
+
+      --color-btn-@{item}-disabled-text: fadeout(@color, 60%);
+      --color-btn-@{item}-disabled-bg: @mantle;
+    }
+
+    & when not (@flat) {
+      --color-btn-@{item}-text: @base;
+      --color-btn-@{item}-bg: @color;
+      --color-btn-@{item}-icon: @base;
+
+      --color-btn-@{item}-hover-text: @base;
+      --color-btn-@{item}-hover-bg: lighten(@color, 10%);
+      --color-btn-@{item}-hover-border: lighten(@color, 10%);
+
+      --color-btn-@{item}-selected-text: @base;
+      --color-btn-@{item}-selected-bg: lighten(@color, 10%);
+      --color-btn-@{item}-selected-border: lighten(@color, 10%);
+
+      --color-btn-@{item}-disabled-text: @crust;
+      --color-btn-@{item}-disabled-bg: fadeout(@color, 60%);
+    }
+
+    --color-btn-@{item}-hover-icon: @base;
+
+    /* set these to transparent for the looks */
+    --color-btn-@{item}-border: transparent;
+    --color-btn-@{item}-shadow: 0 0 transparent;
+    --color-btn-@{item}-inset-shadow: 0 0 transparent;
+    --color-btn-@{item}-selected-shadow: 0 0 transparent;
+    --color-btn-@{item}-disabled-border: transparent;
+  }
+
+  #oxocarbon(@lookup, @accent) {
+    @pink: @oxocarbon[@@lookup][@pink];
+    @skyBlue: @oxocarbon[@@lookup][@skyBlue];
+    @raspberry: @oxocarbon[@@lookup][@raspberry];
+    @green: @oxocarbon[@@lookup][@green];
+    @tiffanyBlue: @oxocarbon[@@lookup][@tiffanyBlue];
+    @turquoise: @oxocarbon[@@lookup][@turquoise];
+    @blue: @oxocarbon[@@lookup][@blue];
+    @violet: @oxocarbon[@@lookup][@violet];
+    @text: @oxocarbon[@@lookup][@text];
+    @subtext1: @oxocarbon[@@lookup][@subtext1];
+    @subtext0: @oxocarbon[@@lookup][@subtext0];
+    @overlay2: @oxocarbon[@@lookup][@overlay2];
+    @overlay1: @oxocarbon[@@lookup][@overlay1];
+    @overlay0: @oxocarbon[@@lookup][@overlay0];
+    @surface2: @oxocarbon[@@lookup][@surface2];
+    @surface1: @oxocarbon[@@lookup][@surface1];
+    @surface0: @oxocarbon[@@lookup][@surface0];
+    @base: @oxocarbon[@@lookup][@base];
+    @mantle: @oxocarbon[@@lookup][@mantle];
+    @crust: @oxocarbon[@@lookup][@crust];
+    @accent-color: @oxocarbon[@@lookup][@@accent];
+
+    &,
+    & body {
+      accent-color: @accent-color;
+      --bgColor-default: @base;
+      --color-page-header-bg: @base;
+      --color-marketing-icon-primary: @blue;
+      --color-marketing-icon-secondary: @blue;
+      --color-diff-blob-addition-num-text: @text;
+      --color-diff-blob-addition-fg: @text;
+      --color-diff-blob-addition-num-bg: fadeout(@green, 70%);
+      --color-diff-blob-addition-line-bg: fadeout(@green, 85%);
+      --color-diff-blob-addition-word-bg: fadeout(@green, 70%);
+      --color-diff-blob-deletion-num-text: @text;
+      --color-diff-blob-deletion-fg: @text;
+      --color-diff-blob-deletion-num-bg: fadeout(@raspberry, 70%);
+      --color-diff-blob-deletion-line-bg: fadeout(@raspberry, 85%);
+      --color-diff-blob-deletion-word-bg: fadeout(@raspberry, 70%);
+      --color-diff-blob-hunk-num-bg: fadeout(@blue, 60%);
+      --color-diffstat-addition-bg: @green;
+      --color-prettylights-syntax-comment: @overlay1;
+      --color-prettylights-syntax-constant: @blue;
+      --color-prettylights-syntax-entity: @blue;
+      --color-prettylights-syntax-storage-modifier-import: @pink;
+      --color-prettylights-syntax-entity-tag: @turquoise;
+      --color-prettylights-syntax-keyword: @pink;
+      --color-prettylights-syntax-string: @green;
+      --color-prettylights-syntax-variable: @pink;
+      --color-prettylights-syntax-invalid-illegal-text: @raspberry;
+      --color-prettylights-syntax-invalid-illegal-bg: fadeout(@raspberry, 85%);
+      --color-prettylights-syntax-markup-heading: @turquoise;
+      --color-prettylights-syntax-markup-italic: @raspberry;
+      --color-prettylights-syntax-markup-bold: @raspberry;
+      --color-prettylights-syntax-markup-deleted-text: @text;
+      --color-prettylights-syntax-markup-deleted-bg: fadeout(@raspberry, 60%);
+      --color-prettylights-syntax-markup-inserted-text: @text;
+      --color-prettylights-syntax-markup-inserted-bg: fadeout(@green, 60%);
+      --color-prettylights-syntax-markup-changed-text: @text;
+      --color-prettylights-syntax-markup-changed-bg: fadeout(@raspberry, 60%);
+      --color-prettylights-syntax-markup-ignored-text: @text;
+      --color-codemirror-text: @text;
+      --color-codemirror-bg: @base;
+      --color-codemirror-gutters-bg: @base;
+      --color-codemirror-guttermarker-text: @base;
+      --color-codemirror-lines-bg: @base;
+      --color-checks-bg: @mantle;
+      --color-checks-text-primary: @text;
+      --color-checks-text-secondary: @subtext1;
+      --color-checks-text-link: @tiffanyBlue;
+      --color-checks-btn-icon: @text;
+      --color-checks-btn-hover-icon: @text;
+      --color-checks-btn-hover-bg: @crust;
+      --color-checks-input-text: @surface1;
+      --color-checks-input-placeholder-text: @subtext1;
+      --color-checks-input-focus-text: @text;
+      --color-checks-input-bg: @surface0;
+      --color-checks-donut-error: @raspberry;
+      --color-checks-donut-pending: @pink;
+      --color-checks-donut-success: @green;
+      --color-checks-donut-neutral: @overlay2;
+      --color-checks-dropdown-text: @text;
+      --color-checks-dropdown-bg: @surface0;
+      --color-checks-dropdown-border: @surface1;
+      --color-checks-dropdown-shadow: @crust;
+      --color-checks-dropdown-hover-text: @subtext0;
+      --color-checks-dropdown-hover-bg: @mantle;
+      --color-checks-dropdown-btn-hover-text: @text;
+      --color-checks-dropdown-btn-hover-bg: @mantle;
+      --color-checks-scrollbar-thumb-bg: @mantle;
+      --color-checks-header-label-text: @text;
+      --color-checks-header-label-open-text: @accent-color;
+      --color-checks-header-border: @surface0;
+      --color-checks-header-icon: @text;
+      --color-checks-line-text: @subtext0;
+      --color-checks-line-num-text: @subtext0;
+      --color-checks-line-timestamp-text: @subtext0;
+      --color-checks-line-hover-bg: @surface0;
+      --color-checks-line-selected-bg: @surface0;
+      --color-checks-gate-text: @text;
+      --color-checks-gate-waiting-text: @raspberry;
+      --color-checks-step-header-open-bg: @surface0;
+      --color-checks-step-error-text: @raspberry;
+      --color-checks-step-warning-text: @pink;
+      --color-checks-logline-text: @text;
+      --color-checks-logline-num-text: @text;
+      --color-checks-logline-debug-text: @skyBlue;
+      --color-checks-logline-error-text: @text;
+      --color-checks-logline-error-num-text: @raspberry;
+      --color-checks-logline-error-bg: fadeout(@raspberry, 85%);
+      --color-checks-logline-warning-text: @subtext1;
+      --color-checks-logline-warning-num-text: @pink;
+      --color-checks-logline-warning-bg: fadeout(@pink, 85%);
+      --color-checks-logline-command-text: @blue;
+      --color-checks-logline-section-text: @green;
+      --color-checks-ansi-black: @surface1;
+      --color-checks-ansi-black-bright: @surface2;
+      --color-checks-ansi-white: @subtext1;
+      --color-checks-ansi-white-bright: @subtext0;
+      --divider-color: @surface1;
+      --underlineNav-borderColor-active: @accent-color;
+      --color-scale-yellow-2: @raspberry; //star
+
+      & when (@lookup =latte) {
+        // When using a light theme use the light colors instead of the dark
+        --color-checks-ansi-black: @subtext1;
+        --color-checks-ansi-black-bright: @subtext0;
+        --color-checks-ansi-white: @surface2;
+        --color-checks-ansi-white-bright: @surface1;
+      }
+
+      --color-checks-ansi-red: @raspberry;
+      --color-checks-ansi-red-bright: @raspberry;
+      --color-checks-ansi-green: @green;
+      --color-checks-ansi-green-bright: @green;
+      --color-checks-ansi-yellow: @raspberry;
+      --color-checks-ansi-yellow-bright: @raspberry;
+      --color-checks-ansi-blue: @blue;
+      --color-checks-ansi-blue-bright: @blue;
+      --color-checks-ansi-magenta: @pink;
+      --color-checks-ansi-magenta-bright: @pink;
+      --color-checks-ansi-cyan: @turquoise;
+      --color-checks-ansi-cyan-bright: @turquoise;
+      --color-header-text: var(--subtext2);
+      --color-header-bg: @mantle;
+      --color-header-logo: @text;
+      --color-header-search-bg: @surface0;
+      --color-header-search-border: @surface1;
+      --color-sidenav-selected-bg: @surface1;
+      --color-menu-bg-active: @surface2;
+      --color-timeline-badge-bg: @surface0;
+      --color-btn-text: @text;
+      --color-btn-bg: @surface0;
+      --color-btn-border: @surface1;
+      --color-btn-hover-bg: @surface1;
+      --color-btn-hover-border: @surface2;
+      --color-btn-active-bg: @surface2;
+      --color-btn-selected-bg: @surface2;
+      --color-btn-counter-bg: @crust;
+      #coloredButton(primary, @green, false);
+      #coloredButton(danger, @raspberry, true);
+      --color-action-list-item-inline-divider: @surface2;
+      --color-action-list-item-default-hover-bg: @surface1;
+      --color-action-list-item-default-selected-bg: @surface1;
+      --color-fg-default: @text;
+      --color-fg-muted: @subtext1;
+      --color-fg-subtle: @subtext1;
+      --color-fg-on-emphasis: @base;
+      --color-canvas-default: @base;
+      --color-canvas-overlay: @base;
+      --color-canvas-inset: @base; // background - github header
+      --color-canvas-subtle: @surface0;
+      --color-border-default: @surface1;
+      --color-border-muted: @surface0;
+      --color-shadow-medium: 0 3px 6px @crust;
+      --color-shadow-large: 0 8px 24px @crust;
+      --color-shadow-extra-large: 0 12px 48px @crust;
+      --color-neutral-emphasis-plus: @overlay0;
+      --color-neutral-emphasis: @overlay2;
+      --color-neutral-muted: fadeout(@overlay0, 60%);
+      --color-accent-fg: @accent-color;
+      --color-accent-emphasis: @accent-color;
+      --color-accent-muted: fadeout(@accent-color, 60%);
+      --color-accent-subtle: fadeout(@accent-color, 85%);
+      --color-success-fg: @green;
+      --color-success-emphasis: @green;
+      --color-attention-fg: @pink;
+      --color-attention-emphasis: @pink;
+      --color-severe-fg: @raspberry;
+      --color-severe-emphasis: @raspberry;
+      --color-danger-fg: @raspberry;
+      --color-danger-muted: fadeout(@raspberry, 60%);
+      --color-danger-emphasis: @raspberry;
+      --color-open-fg: @green;
+      --color-open-emphasis: @green;
+      --color-closed-fg: @raspberry;
+      --color-closed-emphasis: @raspberry;
+      --color-done-fg: @skyBlue;
+      --color-done-emphasis: @skyBlue;
+      --color-sponsors-fg: @skyBlue;
+      --color-sponsors-emphasis: @skyBlue;
+      --color-primer-fg-disabled: fadeout(@accent-color, 50%);
+      --color-primer-border-active: @raspberry;
+    }
+    --color-workflow-card-connector: @overlay0;
+    --color-workflow-card-connector-bg: @overlay0;
+    --color-workflow-card-connector-inactive: @surface1;
+    --color-workflow-card-connector-inactive-bg: @surface1;
+    --color-workflow-card-connector-highlight: @accent-color;
+    --color-workflow-card-connector-highlight-bg: @accent-color;
+    --color-workflow-card-bg: @surface1;
+    --color-workflow-card-inactive-bg: @surface0;
+    --color-workflow-card-progress-complete-bg: fadeout(@blue, 85%);
+    --color-workflow-card-progress-incomplete-bg: @surface1;
+    --color-discussions-state-answered-icon: var(--color-scale-green-3);
+    --color-bg-discussions-row-emoji-box: var(--color-scale-gray-6);
+    --color-notifications-button-text: var(--color-scale-white);
+    --color-notifications-button-hover-text: var(--color-scale-white);
+    --color-notifications-button-hover-bg: var(--color-scale-blue-4);
+    --color-notifications-row-read-bg: var(--color-canvas-default);
+    --color-notifications-row-bg: var(--color-canvas-subtle);
+    --color-icon-directory: @text;
+    --color-checks-step-error-icon: var(--color-scale-red-4);
+
+    --color-user-mention-fg: @accent-color;
+    --color-user-mention-bg: @crust;
+    --color-text-white: @text;
+
+    --color-calendar-halloween-graph-day-L1-bg: fadeout(@accent-color, 3);
+    --color-calendar-halloween-graph-day-L2-bg: fadeout(@accent-color, 2);
+    --color-calendar-halloween-graph-day-L3-bg: @accent-color;
+    --color-calendar-halloween-graph-day-L4-bg: @mantle;
+    --color-calendar-graph-day-L1-bg: fadeout(@accent-color, 60%) !important;
+    --color-calendar-graph-day-L2-bg: fadeout(@accent-color, 40%) !important;
+    --color-calendar-graph-day-L3-bg: fadeout(@accent-color, 20%) !important;
+    --color-calendar-graph-day-L4-bg: @accent-color !important;
+    --color-calendar-graph-day-L1-border: transparent !important;
+    --color-calendar-graph-day-L2-border: transparent !important;
+    --color-calendar-graph-day-L3-border: transparent !important;
+    --color-calendar-graph-day-L4-border: transparent !important;
+    --color-calendar-graph-day-border: transparent !important;
+    --color-calendar-graph-day-bg: @surface0 !important;
+
+    /* Search */
+    .header-search-input {
+      color: @text !important;
+    }
+
+    .header-search-button.placeholder,
+    .header-search-input::placeholder {
+      color: @subtext1 !important;
+    }
+
+    /* Tags */
+    .topic-tag {
+      --color-accent-fg: @accent-color;
+      --color-accent-emphasis: @accent-color;
+      --color-accent-muted: fadeout(@accent-color, 60%);
+      --color-accent-subtle: fadeout(@accent-color, 85%);
+    }
+
+    /* user/team mentions */
+    .user-mention,
+    .team-mention {
+      color: @accent-color;
+    }
+
+    /* Large notification */
+    .flash {
+      --color-attention-muted: @accent-color;
+      --bgColor-attention-muted: fadeout(@accent-color, 60%);
+      --color-attention-subtle: fadeout(@accent-color, 85%);
+    }
+
+    /* fix for notis shadow */
+    .notifications-list .Box-header {
+      box-shadow: none;
+    }
+
+    ::selection {
+      background: @surface2 !important;
+    }
+
+    & when (@repo-beta = 1) {
+      /* New repo layout button, pr button on repo, tick */
+      .dvJnjZ,
+      .types__StyledButton-sc-ws60qy-0.gHIvvy,
+      .ldavJa {
+        background-color: @green;
+        color: @crust;
+        &:hover {
+          background-color: darken(@green, 15%);
+        }
+      }
+      .ezbPok * {
+        fill: @text;
+      }
+      .jMEWXM > * > *,
+      #branch-picker-repos-header-ref-selector,
+      .gtXnmh .Box-sc-g0xbh4-0.jGfYmh > * {
+        background-color: @surface0;
+        border-color: @surface1;
+        &:hover {
+          background-color: @surface1;
+          border-color: @surface2;
+        }
+        & * {
+          fill: @text;
+          color: @text;
+        }
+      }
+      .cPEOjV {
+        background-color: @mantle;
+      }
+      .Box-sc-g0xbh4-0.bUCzHg,
+      .ehcSsh > * {
+        border-color: @surface1 !important;
+      }
+      .eYedVD .Box-sc-g0xbh4-0.jGfYmh *,
+      .Text-sc-17v1xeu-0.foaUgQ {
+        color: @subtext0;
+      }
+      .hRMLtq,
+      .ilcYjX *,
+      .lcModf,
+      .UnstyledTextInput-sc-14ypya-0,
+      .TextInputWrapper-sc-1mqhpbi-1,
+      .types__StyledButton-sc-ws60qy-0.vhlgx,
+      button.types__StyledButton-sc-ws60qy-0.kRuNkv {
+        background-color: @crust;
+        color: @text;
+      }
+      .Flash__StyledFlash-sc-hzrzfc-0.kUDiXM {
+        background-color: fadeout(@pink, 90%);
+        border-color: @pink;
+      }
+      .kUDiXM svg {
+        fill: @pink;
+      }
+      /* Some popup */
+      .iGzDhH,
+      .hBobmI,
+      #__primerPortalRoot__ > div > div > div {
+        background-color: @mantle;
+      }
+      .Text-sc-17v1xeu-0.gPDEWA {
+        color: @subtext1;
+      }
+      .TabNav__TabNavTabList-sc-pwdi4r-1.gFzOft {
+        & * {
+          border-color: @surface0;
+        }
+        &:hover {
+          & * {
+            background: @mantle;
+          }
+        }
+      }
+    }
+
+    & when (@search-beta = 1) {
+      // search menu links
+      .Link__StyledLink-sc-14289xe-0.ifbDxt {
+        color: @blue;
+      }
+      .Link__StyledLink-sc-14289xe-0.ifbDxt:hover {
+        background-color: fadeout(@blue, 60%);
+      }
+      // Search page buttons
+      .cxcvTj,
+      .Box-sc-g0xbh4-0.jMdYTc,
+      .Box-sc-g0xbh4-0.grSspY button {
+        background-color: @base;
+        border-color: @surface1;
+      }
+
+      .lpbCdH,
+      .ibvJxz,
+      .fjInzX {
+        background-color: @mantle;
+      }
+
+      .search-results-page {
+        background-color: @base;
+      }
+    }
+  }
+}
+
+@-moz-document regexp("https:\/\/notebooks\.githubusercontent\.com\/view\/ipynb.*") {
+  :root {
+    #oxocarbon(@flavor, @accentColor);
+  }
+
+  #oxocarbon(@lookup, @accent) {
+    @pink: @oxocarbon[@@lookup][@pink];
+    @skyBlue: @oxocarbon[@@lookup][@skyBlue];
+    @raspberry: @oxocarbon[@@lookup][@raspberry];
+    @green: @oxocarbon[@@lookup][@green];
+    @tiffanyBlue: @oxocarbon[@@lookup][@tiffanyBlue];
+    @blue: @oxocarbon[@@lookup][@blue];
+    @violet: @oxocarbon[@@lookup][@violet];
+    @text: @oxocarbon[@@lookup][@text];
+    @subtext1: @oxocarbon[@@lookup][@subtext1];
+    @subtext0: @oxocarbon[@@lookup][@subtext0];
+    @overlay2: @oxocarbon[@@lookup][@overlay2];
+    @overlay1: @oxocarbon[@@lookup][@overlay1];
+    @overlay0: @oxocarbon[@@lookup][@overlay0];
+    @surface2: @oxocarbon[@@lookup][@surface2];
+    @surface1: @oxocarbon[@@lookup][@surface1];
+    @surface0: @oxocarbon[@@lookup][@surface0];
+    @base: @oxocarbon[@@lookup][@base];
+    @mantle: @oxocarbon[@@lookup][@mantle];
+    @crust: @oxocarbon[@@lookup][@crust];
+    @accent-color: @oxocarbon[@@lookup][@@accent];
+
+    /* Colors */
+    --jp-border-color0: var(--color-scale-gray-7);
+    --jp-border-color1: var(--color-scale-gray-7);
+    --jp-border-color2: var(--color-scale-gray-8);
+    --jp-border-color3: var(--color-scale-gray-9);
+    --jp-ui-font-color0: @text;
+    --jp-ui-font-color1: fadeout(@text, 13%);
+    --jp-ui-font-color2: fadeout(@text, 46%);
+    --jp-ui-font-color3: fadeout(@text, 72%);
+    --jp-ui-inverse-font-color0: @crust;
+    --jp-ui-inverse-font-color1: fadeout(@crust, 20%);
+    --jp-ui-inverse-font-color2: fadeout(@crust, 50%);
+    --jp-ui-inverse-font-color3: fadeout(@crust, 70%);
+    --jp-content-font-color0: @text;
+    --jp-content-font-color1: @text;
+    --jp-content-font-color2: fadeout(@text, 30%);
+    --jp-content-font-color3: fadeout(@text, 50%);
+    --jp-content-link-color: @tiffanyBlue;
+    --jp-layout-color0: @base !important;
+    --jp-layout-color1: var(--color-scale-gray-9);
+    --jp-layout-color2: var(--color-scale-gray-8);
+    --jp-layout-color3: var(--color-scale-gray-7);
+    --jp-layout-color4: var(--color-scale-gray-6);
+    --jp-inverse-layout-color0: var(--color-scale-white);
+    --jp-inverse-layout-color1: var(--color-scale-white);
+    --jp-inverse-layout-color2: var(--color-scale-gray-2);
+    --jp-inverse-layout-color3: var(--color-scale-gray-4);
+    --jp-inverse-layout-color4: var(--color-scale-gray-6);
+    --jp-brand-color0: var(--color-scale-blue-7);
+    --jp-brand-color1: var(--color-scale-blue-5);
+    --jp-brand-color2: var(--color-scale-blue-3);
+    --jp-brand-color3: var(--color-scale-blue-1);
+    --jp-brand-color4: var(--color-scale-blue-0);
+    --jp-accent-color0: var(--color-scale-green-7);
+    --jp-accent-color1: var(--color-scale-green-5);
+    --jp-accent-color2: var(--color-scale-green-3);
+    --jp-accent-color3: var(--color-scale-green-1);
+    --jp-warn-color0: var(--color-scale-orange-7);
+    --jp-warn-color1: var(--color-scale-orange-5);
+    --jp-warn-color2: var(--color-scale-orange-3);
+    --jp-warn-color3: var(--color-scale-orange-1);
+    --jp-error-color0: var(--color-scale-red-7);
+    --jp-error-color1: var(--color-scale-red-5);
+    --jp-error-color2: var(--color-scale-red-3);
+    --jp-error-color3: var(--color-scale-red-1);
+    --jp-success-color0: var(--color-scale-green-7);
+    --jp-success-color1: var(--color-scale-green-5);
+    --jp-success-color2: var(--color-scale-green-3);
+    --jp-success-color3: var(--color-scale-green-1);
+    --jp-info-color0: var(--color-scale-blue-7);
+    --jp-info-color1: var(--color-scale-blue-5);
+    --jp-info-color2: var(--color-scale-blue-3);
+    --jp-info-color3: var(--color-scale-blue-1);
+    --jp-cell-editor-border-color: var(--color-scale-gray-7);
+    --jp-cell-editor-box-shadow: inset 0 0 2px var(--color-scale-blue-3);
+    --jp-cell-prompt-not-active-font-color: fadeout(@text, 50%);
+    --jp-cell-inprompt-font-color: var(--color-scale-blue-6);
+    --jp-cell-outprompt-font-color: var(--color-scale-coral-6);
+    --jp-notebook-multiselected-color: fadeout(@overlay2, 86%);
+    --jp-rendermime-error-background: fadeout(@raspberry, 82%);
+    --jp-rendermime-table-row-background: var(--color-scale-gray-9);
+    --jp-rendermime-table-row-hover-background: fadeout(@surface2, 86%);
+    --jp-dialog-background: fadeout(@crust, 40%);
+    --jp-toolbar-box-shadow: 0px 0px 2px 0px fadeout(@crust, 20%);
+    --jp-input-box-shadow: inset 0 0 2px var(--color-scale-blue-3);
+    --jp-input-background: var(--color-scale-gray-8);
+    --jp-input-active-box-shadow-color: fadeout(@blue, 70%);
+    --jp-editor-selected-focused-background: fadeout(@blue, 86%);
+    --jp-mirror-editor-keyword-color: var(--color-scale-green-5);
+    --jp-mirror-editor-atom-color: var(--color-scale-blue-3);
+    --jp-mirror-editor-number-color: var(--color-scale-green-4);
+    --jp-mirror-editor-def-color: var(--color-scale-blue-6);
+    --jp-mirror-editor-variable-color: var(--color-scale-gray-3);
+    --jp-mirror-editor-variable-2-color: var(--color-scale-blue-4);
+    --jp-mirror-editor-variable-3-color: var(--color-scale-green-6);
+    --jp-mirror-editor-punctuation-color: var(--color-scale-blue-4);
+    --jp-mirror-editor-property-color: var(--color-scale-blue-4);
+    --jp-mirror-editor-operator-color: @skyBlue;
+    --jp-mirror-editor-comment-color: @subtext0;
+    --jp-mirror-editor-string-color: @pink;
+    --jp-mirror-editor-string-2-color: var(--color-scale-purple-3);
+    --jp-mirror-editor-meta-color: @skyBlue;
+    --jp-mirror-editor-qualifier-color: var(--color-scale-gray-5);
+    --jp-mirror-editor-builtin-color: var(--color-scale-green-6);
+    --jp-mirror-editor-bracket-color: var(--color-scale-gray-2);
+    --jp-mirror-editor-tag-color: var(--color-scale-blue-7);
+    --jp-mirror-editor-attribute-color: var(--color-scale-blue-7);
+    --jp-mirror-editor-header-color: var(--color-scale-blue-5);
+    --jp-mirror-editor-quote-color: var(--color-scale-green-3);
+    --jp-mirror-editor-link-color: var(--color-scale-blue-7);
+    --jp-mirror-editor-error-color: @raspberry;
+    --jp-mirror-editor-hr-color: var(--color-scale-gray-8);
+    --jp-vega-background: var(--color-scale-gray-4);
+    --jp-search-selected-match-background-color: @raspberry;
+    --jp-search-selected-match-color: @crust;
+    --jp-icon-contrast-color0: var(--color-scale-purple-6);
+    --jp-icon-contrast-color1: var(--color-scale-green-6);
+    --jp-icon-contrast-color2: var(--color-scale-pink-6);
+    --jp-icon-contrast-color3: var(--color-scale-blue-6);
+  }
+}
+// vim:ft=less
