@@ -1,0 +1,509 @@
+  /* ==UserStyle==
+@name Gmail Oxocarbon
+@namespace github.com/pedrovh/oxocarbon-userstyles/gmail
+@homepageURL https://github.com/pedrovh/oxocarbon-userstyles/gmail
+@version 1.0
+@description Soothing pastel theme for Gmail
+@author PedroVH
+@updateURL https://github.com/pedrovh/oxocarbon-userstyles/gmail/oxocarbon.user.css
+@license MIT
+
+@preprocessor less
+@var select flavor "Flavor" ["base16:Base16*"]
+@var select accentColor "Accent" ["pink:Pink*", "raspberry:Raspberry", "violet:Violet"]
+==/UserStyle== */
+@-moz-document domain("mail.google.com") {
+  :root {
+    #oxocarbon(@flavor, @accentColor);
+  }
+
+  @oxocarbon: {
+    @base16: {
+      @pink: #ff7eb6;
+      @raspberry: #ee5396;
+      @blue: #33b1ff;
+      @skyBlue: #78a9ff;
+      @lightBlue: #82cfff;
+      @tiffanyBlue: #08bdba;
+      @turquoise: #3ddbd9;
+      @green: #42be65;
+      @violet: #be95ff;
+      @text: #dde1e6;
+      @subtext1: #ffffff;
+      @subtext0: #ffffff;
+      @overlay2: #f2f4f8;
+      @overlay1: #f2f4f8;
+      @overlay0: #dde1e6;
+      @surface2: #dde1e6;
+      @surface1: #525252;
+      @surface0: #525252;
+      @base: #161616;
+      @mantle: #262626;
+      @crust: #393939;
+    }
+  };
+
+    #oxocarbon(@lookup, @accent) {
+      @pink: @oxocarbon[@@lookup][@pink];
+      @green: @oxocarbon[@@lookup][@green];
+      @turquoise: @oxocarbon[@@lookup][@turquoise];
+      @blue: @oxocarbon[@@lookup][@blue];
+      @tiffanyBlue: @oxocarbon[@@lookup][@tiffanyBlue];
+      @blue: @oxocarbon[@@lookup][@blue];
+      @violet: @oxocarbon[@@lookup][@violet];
+      @text: @oxocarbon[@@lookup][@text];
+      @subtext1: @oxocarbon[@@lookup][@subtext1];
+      @subtext0: @oxocarbon[@@lookup][@subtext0];
+      @overlay2: @oxocarbon[@@lookup][@overlay2];
+      @overlay1: @oxocarbon[@@lookup][@overlay1];
+      @overlay0: @oxocarbon[@@lookup][@overlay0];
+      @surface2: @oxocarbon[@@lookup][@surface2];
+      @surface1: @oxocarbon[@@lookup][@surface1];
+      @surface0: @oxocarbon[@@lookup][@surface0];
+      @base: @oxocarbon[@@lookup][@base];
+      @mantle: @oxocarbon[@@lookup][@mantle];
+      @crust: @oxocarbon[@@lookup][@crust];
+      @accent-color: @oxocarbon[@@lookup][@@accent];
+
+      .ZG,
+      .boo .aQl > .J-JN-M-I-Jm,
+      .boo .aaa > .J-JN-M-I-Jm,
+      .boo .ZE > .J-JN-M-I-Jm,
+      .bs1 + .bs3,
+      .btj + .aD,
+      body {
+        color: @text !important;
+      }
+
+      /* input box */
+      .nr {
+        background-color: @surface1 !important;
+        color: @text !important;
+      }
+
+      .bs0 > .acM,
+      .bti > .btg {
+        color: @text !important;
+      }
+
+      /* quick settings */
+      .IU {
+        background: @base !important;
+        box-shadow: inset 1px 0 0 @mantle !important;
+      }
+      .Q0,
+      .VM .Q5,
+      .VM .OG,
+      .Q2,
+      .bCh,
+      .aIY,
+      .a21,
+      .ST,
+      .OB {
+        color: @text !important;
+      }
+      .Tj,
+      .OD {
+        color: @accent-color !important;
+      }
+
+      /* background */
+      #loading {
+        background: @base !important;
+      }
+
+      header,
+      .nH.w-asV,
+      .bkL {
+        background: @base !important;
+      }
+
+      /* links */
+      .aRq {
+        color: @tiffanyBlue !important;
+        &:hover {
+          color: @turquoise !important;
+        }
+      }
+
+      /* header */
+      .aeH,
+      .aqK {
+        background: @mantle !important;
+      }
+
+      /* search */
+      .gb_Lc .gb_Ee {
+        background: @base !important;
+      }
+      .gb_Lc .gb_3e,
+      .gb_Ee.gb_Fe .gb_Ze {
+        color: @text !important;
+      }
+      .gb_Ee.gb_Fe button svg {
+        color: @text !important;
+        opacity: 1;
+      }
+      .aRp {
+        background: @crust !important;
+      }
+      .gssb_i {
+        background: @crust !important;
+        color: @text !important;
+      }
+      .gssb_e,
+      .gssb_m {
+        background: @crust !important;
+        color: @text !important;
+      }
+
+      /* left bar */
+      .CL.Q7:hover,
+      .CL.Wj:hover,
+      .CL.Q7.NQ,
+      .CL.Wj.NQ,
+      .TK .TO.nZ:active,
+      .TK .TO.ol:active,
+      .TK .TO.nZ,
+      .TK .TO.ol,
+      .byl .TK .nZ.aBP,
+      .byl .TK .nZ.aS3,
+      .byl .TK .nZ.aS4,
+      .byl .TK .nZ.aS5,
+      .byl .TK .nZ.aS6 {
+        background: @crust !important;
+      }
+      .TO.NQ,
+      .n6 .ah9:hover,
+      .n6 .ah9.aiu:hover,
+      .n6 .ah9:focus,
+      .TK .TO:active,
+      .n6 .ah9.aiu:active {
+        background: @surface1 !important;
+      }
+      .aAv,
+      .TO .nU > .n0,
+      .TO.NQ .nU > .n0,
+      .TO.nZ .nU > .n0,
+      .ah9 > .CJ,
+      .n3 > .CL > .CK {
+        color: @text !important;
+      }
+      .h0,
+      .Dj {
+        color: @subtext0 !important;
+      }
+
+      /* right bar */
+      .bAw .brC-aT5-aOt-Jw {
+        background: @mantle !important;
+      }
+      .brC-aMv-auO .bse-bvF-I.aT5-aOt-I-JW .aT5-aOt-I-JX-atM-J6,
+      .brC-aMv-auO .bse-bvF-I.aT5-aOt-I-JO .aT5-aOt-I-JX-atM-J6 {
+        background: lighten(@crust, 4%);
+      }
+      /* inbox area */
+      .H2.HD {
+        background: @surface0 !important;
+        border-color: @surface1 !important;
+      }
+      .bkK > .nH {
+        background: @mantle !important;
+      }
+      /* inbox item */
+      .yO {
+        background: @base !important;
+        &:hover {
+          box-shadow: inset 1px 0 0 @surface0,
+          inset -1px 0 0 @surface0,
+          0 0 4px 0 @base,
+          0 0 6px 2px @base !important;
+        }
+      }
+      /* quick text */
+      .y2 {
+        color: @subtext0 !important;
+      }
+      .aeJ,
+      .aRs {
+        .J-KU:hover {
+          background: @surface0 !important;
+        }
+        background: @base !important;
+        .aRu {
+          .aRv {
+            color: @subtext0 !important;
+          }
+          color: @subtext1 !important;
+        }
+      }
+      .aAA.J-KU-Jg-K9 {
+        background: @base !important;
+      }
+      .J-KU-KO.aAy {
+        .aKz {
+          color: @accent-color !important;
+        }
+        &::before {
+          background: @accent-color !important;
+        }
+      }
+      .aKx > .aKz {
+        color: @subtext0 !important;
+      }
+      /* inbox box badge */
+      .at {
+        color: @crust !important;
+        background: @accent-color !important;
+        .au .av {
+          color: @crust !important;
+        }
+      }
+      .y6,
+      .bA4 {
+        color: @text !important;
+      }
+      /* buttons hovers */
+      .T-I-JW.amD::before,
+      .T-I-JW.adg::before,
+      .T-I-JW > .asa::before {
+        background: @surface0 !important;
+      }
+      /* forward/reply buttons */
+      .amn > .ams {
+        color: @text !important;
+      }
+      .amr .amn > .ams {
+        background: @base !important;
+        border-color: @surface0 !important;
+      }
+      /* send one now */
+      .x0 {
+        color: @text !important;
+      }
+
+      /* theme */
+      div.Kj-JD {
+        background-color: @base;
+      }
+      .a80.Kj-JD-K7 {
+        box-shadow: 0 5px 10px -5px @crust;
+      }
+      .a81 {
+        border-color: @surface0;
+      }
+
+      /* no star warning */
+      .Tm .TC {
+        background: @base !important;
+        color: @text !important;
+      }
+
+      /* dropdown */
+      .ZF-z6,
+      .ZF-zT,
+      .ZF-Av .lJ,
+      .ZF-Av .lN,
+      .aaZ,
+      .aoT,
+      .J-M,
+      .bAp.b8.UC .vh,
+      .ajA,
+      .nH .Hy .m,
+      .J-N-JT,
+      .J-JK-JT,
+      .J-LC-JT,
+      form[role="search"],
+      form[role="search"] table,
+      form[role="search"] div,
+      form[role="search"] td {
+        background: @mantle !important;
+      }
+
+      div.Kj-JD-Jl > button.J-at1-atl,
+      div.Kj-JD-Jl > button.J-at1-auR {
+        background: @accent-color !important;
+        color: @crust !important;
+      }
+      div.Kj-JD-Jl > button,
+      .bBh .Kj-JD-Jl > .J-at1-auR,
+      .Kj-JD-K7-K0,
+      .J-N {
+        color: @text !important;
+      }
+      .J-N-JT,
+      .J-N-JW {
+        color: @text !important;
+        background: @surface2 !important;
+      }
+      .J-N-JT .J-N-Jz,
+      .J-N-JW .J-N-Jz {
+        color: @text !important;
+      }
+      .T-I-Kq > .asa::before,
+      .T-I-Kq.T-I-JO > .asa::before {
+        background: @surface1 !important;
+      }
+
+      /* compose button */
+      .T-I-KE {
+        background: @accent-color !important;
+        color: @crust !important;
+        & when (@lookup =latte) {
+          color: @text !important;
+        }
+        &:hover {
+          background: darken(@accent-color, 10%);
+          color: @crust !important;
+        }
+      }
+
+      /* drive usage */
+      .aiC {
+        background: @overlay0 !important;
+      }
+      .aiA {
+        background: @accent-color !important;
+      }
+      /* icons */
+      .aAy > .aKp,
+      .xY > .T-Jo,
+      .T-I .T-I-J3,
+      td.apU > .T-KT.aXw::before {
+        filter: brightness(0) saturate(100%) invert(28%) sepia(17%) saturate(835%) hue-rotate(196deg) brightness(150%) contrast(75%);
+      }
+      td.apU > .T-KT.T-KT-Jp::before {
+        filter: brightness(0) saturate(100%) invert(28%) sepia(17%) saturate(835%) hue-rotate(337deg) brightness(300%);
+      }
+      /* svgs */
+      .gb_Mc svg,
+      .gb_Rc.gb_Vc svg,
+      .gb_Mc .gb_dd .gb_ld,
+      .gb_Mc .gb_dd .gb_Lc,
+      .gb_Mc .gb_dd .gb_fd,
+      .gb_Rc.gb_Vc .gb_ld {
+        color: @subtext0;
+      }
+
+      /* toolbar */
+      .Hl,
+      .Hq,
+      .Ha,
+      [role="menuitemcheckbox"] > div > div,
+      [role="listbox"] .J-Z-M-I-J6-H > .J-Z-M-I-JG,
+      div.ajR .ajT,
+      .btC .dv,
+      .btC .aaA.a1,
+      .btC .J-N-JX.a1,
+      .btC .aaA.e5,
+      .aaZ .J-N-JX.e5,
+      .btC .aaA.QT,
+      .btC .J-N-JX.QT,
+      .btC .aaA.aA7,
+      .aaZ .J-N-JX.aA7,
+      .btC .aaA.buc,
+      .btC .J-N-JX.buc,
+      .btC .aaA.BP,
+      .aaZ .J-N-JX.BP,
+      .btC .aaA.a5,
+      .btC .aaA.a2X,
+      .aaZ .J-N-JX.a5,
+      .aaZ .J-N-JX.a2X,
+      [role="toolbar"] [role="button"]:not(.H2, .Ol) {
+        filter: invert(1) !important;
+      }
+
+      /* advanced settings */
+      div.Kj-JD-Jz {
+        color: @subtext0 !important;
+      }
+      .alO,
+      .v .fY,
+      .v .f1,
+      .r4 {
+        background: @base !important;
+      }
+      .v .f1,
+      .v .f1 .f0 {
+        color: @text !important;
+      }
+      .qL {
+        color: black !important;
+      }
+      .v .fZ {
+        box-shadow: inset 0 -2px 0 0 @accent-color;
+        .f0 {
+          color: @accent-color !important;
+        }
+      }
+      .alP,
+      .sA,
+      .r4 .e {
+        color: @tiffanyBlue !important;
+        &:hover {
+          color: @turquoise !important;
+        }
+      }
+      .Ze {
+        background: @surface0 !important;
+      }
+      .a8Y > .T-I-ax7 {
+        background: @surface0 !important;
+        color: @text !important;
+        &:hover {
+          background: @surface1 !important;
+        }
+      }
+      .T-I-atl {
+        background: @accent-color !important;
+        color: @crust !important;
+        &:hover {
+          background: lighten(@accent-color, 10%) !important;
+        }
+      }
+
+      /* loading */
+      #explosion_clipper_div > .la-i > div {
+        background: @surface0 !important;
+      }
+
+      #nlpt {
+        background-color: @surface0 !important;
+        &::before {
+          background-color: @overlay0 !important;
+        }
+      }
+
+      .la-b > .la-l,
+      .la-b > .la-r,
+      .la-b > .la-m {
+        background: @surface1 !important;
+      }
+
+      .la-k .la-l,
+      .la-k .la-r {
+        border-color: @base !important;
+      }
+
+      .la-k .la-m {
+        background: @base !important;
+        clip-path: polygon(47% 100%, 100% 47%, 100% 100%);
+      }
+
+      .la-i > .la-l,
+      .la-i > .la-r {
+        border-color: @surface0 !important;
+      }
+
+      .la-i > .la-m {
+        background: @surface0 !important;
+      }
+
+      .msgb {
+        color: @text;
+        a {
+          color: @accent-color !important;
+        }
+      }
+    }
+  } // vim:ft=less
